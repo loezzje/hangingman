@@ -24,6 +24,9 @@ class MakeGuess extends PureComponent {
   submitGuess(event, value){
     event.preventDefault()
     this.props.updateGuesses(this.state.guess)
+    this.setState ({
+      guess: ''
+    })
     }
 
   render() {
@@ -31,7 +34,7 @@ class MakeGuess extends PureComponent {
       <div>
         <form onSubmit={this.submitGuess.bind(this)}>
           <label>Guess:
-          <input type="text" value={this.state.value} onChange={this.handleChange.bind(this)} />
+          <input type="text" value={this.state.guess} onChange={this.handleChange.bind(this)} />
           </label>
         <button onClick={this.submitGuess.bind(this)}>Make Guess</ button>
         </form>
