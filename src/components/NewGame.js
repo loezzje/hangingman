@@ -5,32 +5,9 @@ import createGame from '../actions/createGame'
 
 class NewGame extends PureComponent {
 
-  constructor(props) {
-    super()
-    const {word, guesses, wrongGuesses} = props
-    this.state = {
-      word: "randomWord",
-      guesses: [],
-      wrongGuesses: [],
-    }
-
-  }
 
   startNewGame() {
-    const {
-      word,
-      guesses,
-      wrongGuesses
-    } = this.state
-
-    const newGame = {
-      word,
-      guesses,
-      wrongGuesses,
-    }
-
-    this.props.createGame(newGame)
-    console.log("you created this", newGame)
+    this.props.createGame()
   }
 
 
