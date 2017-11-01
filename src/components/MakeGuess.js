@@ -29,18 +29,20 @@ class MakeGuess extends PureComponent {
   }
 
   submitGuess(event){
-    event.preventDefault()
+    // event.preventDefault()
+    const { guess } = this.state
     if (!this.validateGuess())  {
       this.setState ({
+        guess: '',
         message: 'please fill in a letter between a and z'
       })
       return
     }
 
-    this.props.updateGuesses(this.state.guess)
+    this.props.updateGuesses(guess)
     const { word, guesses } = this.props
-    if (word.indexOf(this.state.guess) === -1 || guesses.includes(this.state.guess) ) {
-      this.props.updateWrongGuess(this.state.guess)
+    if (word.indexOf(guess) === -1 || guesses.includes(guess) ) {
+      this.props.updateWrongGuess(guess)
     }
     this.setState ({
       guess: '',
@@ -56,7 +58,7 @@ class MakeGuess extends PureComponent {
           <label>Guess:
           <input type="text" value={this.state.guess} onChange={this.handleChange.bind(this)} />
           </label>
-        <button onClick={this.submitGuess.bind(this)}>Make Guess</ button>
+        <button type='button' onClick={this.submitGuess.bind(this)}>Make Guess</ button>
         </form>
         <p> {this.state.message}</p>
       </div>
