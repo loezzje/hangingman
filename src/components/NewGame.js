@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import createGame from '../actions/createGame'
+import words from '../fixtures/words'
 
 
 class NewGame extends PureComponent {
 
 
   startNewGame() {
-    this.props.createGame()
+    var randomWord = words[Math.floor(Math.random() * words.length)];
+    this.props.createGame(randomWord)
   }
-
 
   render() {
     return(
