@@ -1,4 +1,4 @@
-import { UPDATE_WRONGGUESS } from '../actions/updateWrongGuesses'
+import { UPDATE_WRONGGUESS } from '../actions/updateWrongGuess'
 import { CREATE_GAME } from '../actions/createGame'
 
 
