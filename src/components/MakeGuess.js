@@ -8,33 +8,45 @@ class MakeGuess extends PureComponent {
 
   constructor(props) {
     super()
-    const { guess } = props
+    const { guess, message } = props
     this.state = {
       guess,
+      message
     }
   }
-
   handleChange(event, value) {
-    this.setState ({
-      guess: event.target.value
-    })
+      this.setState ({
+        guess: event.target.value
+      })
   }
 
-  wrongGuesses(guess) {
-    return guess
+  validateGuess() {
+    const {guess} = this.state
+    if (guess.length > 0 && guess.length <= 1) {
+      console.log("helllooo", guess.charCodeAt())
+      return (guess.charCodeAt() >= 97 && guess.charCodeAt() <= 122)
+    }
   }
 
   submitGuess(event){
     event.preventDefault()
+    if (!this.validateGuess())  {
+      this.setState ({
+        message: 'please fill in a letter between a and z'
+      })
+      return
+    }
+
     this.props.updateGuesses(this.state.guess)
-    const { word } = this.props
-    const wrongGuess = this.wrongGuesses(this.state.guess)
-    if (word.indexOf(this.state.guess) === -1) {
-      this.props.updateWrongGuess(wrongGuess)
+    const { word, guesses } = this.props
+    if (word.indexOf(this.state.guess) === -1 || guesses.includes(this.state.guess) ) {
+      this.props.updateWrongGuess(this.state.guess)
     }
     this.setState ({
-      guess: ''
+      guess: '',
+      message: ''
     })
+
   }
 
   render() {
@@ -46,12 +58,13 @@ class MakeGuess extends PureComponent {
           </label>
         <button onClick={this.submitGuess.bind(this)}>Make Guess</ button>
         </form>
+        <p> {this.state.message}</p>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ word, guess }) => ({ word, guess })
+const mapStateToProps = ({ word, guesses }) => ({ word, guesses })
 
 const mapDispatchToProps = { updateGuesses, updateWrongGuess }
 export default connect(mapStateToProps, mapDispatchToProps)(MakeGuess)

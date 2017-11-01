@@ -28,7 +28,7 @@ class WrongGuessCount extends PureComponent {
   render() {
     return(
       <div>
-        <p>Number of wrong guesses: {this.showNumberOfWrongGuesses()} / {this.showNumberOfGuesses()} </p>
+        <p>Guesses left: {6 - this.showNumberOfWrongGuesses()} </p>
       </div>
     )
   }
