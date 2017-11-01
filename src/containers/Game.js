@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import NewGame from '../components/NewGame'
 import MakeGuess from '../components/MakeGuess'
 import ShowWord from '../components/ShowWord'
+import WrongGuessCount from '../components/WrongGuessCount'
 
 
 
@@ -13,6 +14,7 @@ class GameContainer extends PureComponent {
         <NewGame />
         <MakeGuess />
         <ShowWord />
+        <WrongGuessCount />
       </div>
     )
   }
