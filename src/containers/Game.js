@@ -3,6 +3,7 @@ import NewGame from '../components/NewGame'
 import MakeGuess from '../components/MakeGuess'
 import ShowWord from '../components/ShowWord'
 import WrongGuessCount from '../components/WrongGuessCount'
+import Winner from '../components/Winner'
 
 
 
@@ -15,6 +16,7 @@ class GameContainer extends PureComponent {
         <MakeGuess />
         <ShowWord />
         <WrongGuessCount />
+        <Winner />
       </div>
     )
   }
