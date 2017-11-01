@@ -24,9 +24,6 @@ class MakeGuess extends PureComponent {
     return guess
   }
 
-
-
-
   submitGuess(event){
     event.preventDefault()
     this.props.updateGuesses(this.state.guess)
