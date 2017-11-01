@@ -5,6 +5,7 @@ import MakeGuess from '../components/MakeGuess'
 import ShowWord from '../components/ShowWord'
 import WrongGuessCount from '../components/WrongGuessCount'
 import Winner from '../components/Winner'
+import ShowImage from '../components/ShowImage'
 
 
 
@@ -20,26 +21,28 @@ gameStarted() {
     if (!this.gameStarted()) {
     return(
       <div>
-      <h1> Game </h1>
+      <h1> Hangman </h1>
         <NewGame />
         </div>
       )}
       else if (gameFinished) {
         return (
         <div>
-        <h1> Game </h1>
+        <h1> Hangman </h1>
         <Winner />
+        <ShowImage />
         </div>
       )
       }
       else {
         return (
         <div>
-        <h1> Game </h1>
+        <h1> Hangman </h1>
         <MakeGuess />
         <ShowWord />
         <WrongGuessCount />
         <Winner />
+        <ShowImage />
         </div>
       )
       }
