@@ -5,14 +5,6 @@ import { connect } from 'react-redux'
 
 class ShowWord extends PureComponent {
 
-  // constructor(props) {
-  //   super()
-  //   const { word } = props
-  //   this.state = {
-  //     word: word || 'Hi',
-  //   }
-  // }
-
 
   showWord() {
     const { guesses, word } = this.props
@@ -20,17 +12,16 @@ class ShowWord extends PureComponent {
       return "Create a new game first!"
     }
     else {
-    var wordArray =  word.split("");
-    var letterInWord = wordArray.map(letter => guesses.includes(letter)? letter : "_");
-    var showWord = letterInWord.join(" ")
-    return showWord
-  }
+      var wordArray =  word.split("");
+      var letterInWord = wordArray.map(letter => guesses.includes(letter)? letter : "_");
+      var showWord = letterInWord.join(" ")
+      return showWord
+    }
   }
 
 
 
   render() {
-
     return(
       <div>
         <p>The word: {this.showWord()} </p>
