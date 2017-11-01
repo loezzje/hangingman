@@ -1,32 +1,44 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
+import NewGame from './NewGame'
+import updateGame from '../actions/updateGame'
 
 
 
 class Winner extends PureComponent {
+
+
   isWinner() {
     const { guesses, word } = this.props
     if (word.length === 0) {
+
       return false
     }
     var wordArray = word.split("");
     var letterInWord = wordArray.map(letter => guesses.includes(letter))
-    return (((letterInWord.reduce((result, l) => result + l)) === (word.length)))
-  }
+    if (((letterInWord.reduce((result, l) => result + l)) === (word.length))) {
 
+      return true
+    }
+
+  }
   render() {
     const {wrongGuesses} = this.props
     if (!this.isWinner()&& wrongGuesses.length >= 6) {
+    this.props.updateGame(true)
     return(
       <div>
         <p>You Loose!</p>
+        <NewGame />
       </div>
     )
   }
   else if (this.isWinner()) {
+    this.props.updateGame(true)
     return(
       <div>
         <p>You Win!</p>
+        <NewGame />
       </div>
     )
   }
@@ -37,4 +49,5 @@ class Winner extends PureComponent {
 }
 
 const mapStateToProps = ({ word, guesses, wrongGuesses }) => ({ word, guesses, wrongGuesses })
-export default connect(mapStateToProps)(Winner)
+const mapDispatchToProps = { updateGame }
+export default connect(mapStateToProps, mapDispatchToProps )(Winner)
